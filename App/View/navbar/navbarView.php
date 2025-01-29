@@ -1,7 +1,8 @@
 <?php
-require_once "../../Controller/AppareilController.php";
-$controller = new AppareilController();
-$countries = $controller->getCountries();
+require_once __DIR__ . "/../../../app/Controller/AppareilController.php";
+if (!isset($countries)) {
+    $countries = []; // Assure que la variable existe pour éviter des erreurs
+}
 ?>
 
 <nav>

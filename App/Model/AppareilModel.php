@@ -1,5 +1,5 @@
 <?php
-require_once "app/Model/Database.php";
+require_once "Database.php";
 
 class AppareilModel {
     private $db;

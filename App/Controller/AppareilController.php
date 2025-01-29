@@ -11,7 +11,7 @@ class AppareilController {
     // Affiche les appareils d'un pays
     public function appareilsParPays($pays) {
         $appareils = $this->model->getAppareilsByCountry($pays);
-        require "app/View/appareil/paysView.php";  // Passe les données à la vue
+        require "../View/pays/paysView.php";  // Passe les données à la vue
     }
 
     // Récupère la liste des pays

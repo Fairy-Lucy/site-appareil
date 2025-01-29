@@ -3,6 +3,11 @@ require_once "app/Controller/AppareilController.php";
 require_once "app/Controller/CollectionController.php";
 require_once "app/Controller/IndexController.php";
 
+$controller = new AppareilController();
+$countries = $controller->getCountries();
+require_once "app/View/navbar/navbarView.php";
+
+
 $controller = null;
 $route = $_GET['route'] ?? 'index';
 
