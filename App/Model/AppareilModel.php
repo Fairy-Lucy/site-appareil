@@ -1,18 +1,18 @@
 <?php
-require_once __DIR__ . "/Database.php";
+require_once "app/Model/Database.php";
 
 class AppareilModel {
-    private $pdo;
+    private $db;
 
     public function __construct() {
-        $this->pdo = Database::getConnection();
+        $this->db = Database::getInstance()->getConnection();
     }
 
     public function ajouterAppareil($nom, $pays, $debut, $fin, $commentaire) {
         $sql = "INSERT INTO appareils_photo (nom_appareil, pays, annee_debut, annee_fin, remarques, date_ajout) 
                 VALUES (:nom, :pays, :debut, :fin, :commentaire, NOW())";
 
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->db->prepare($sql);
         return $stmt->execute([
             ':nom' => $nom,
             ':pays' => $pays,
@@ -21,5 +21,15 @@ class AppareilModel {
             ':commentaire' => $commentaire
         ]);
     }
+
+    public function getAllCountries() {
+        $query = "SELECT DISTINCT pays FROM appareils_photo ORDER BY pays";
+        return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAppareilsByCountry($pays) {
+        $stmt = $this->db->prepare("SELECT * FROM appareils_photo WHERE pays = ? ORDER BY annee_debut DESC");
+        $stmt->execute([$pays]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
-?>

@@ -1,16 +1,21 @@
 <?php
-require_once __DIR__ . "/../Model/AppareilModel.php";
+require_once "app/Model/AppareilModel.php";
 
 class AppareilController {
-    public function afficherAppareil($id) {
-        $model = new AppareilModel();
-        $appareil = $model->getAppareilById($id);
+    private $model;
 
-        if (!$appareil) {
-            die("Appareil introuvable !");
-        }
+    public function __construct() {
+        $this->model = new AppareilModel();
+    }
 
-        require __DIR__ . "/../View/appareil/appareilView.php";
+    // Affiche les appareils d'un pays
+    public function appareilsParPays($pays) {
+        $appareils = $this->model->getAppareilsByCountry($pays);
+        require "app/View/appareil/paysView.php";  // Passe les données à la vue
+    }
+
+    // Récupère la liste des pays
+    public function getCountries() {
+        return $this->model->getAllCountries();
     }
 }
-?>

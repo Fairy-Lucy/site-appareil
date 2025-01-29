@@ -1,21 +1,26 @@
 <?php
-require_once "app/Controller/IndexController.php";
-require_once "app/Controller/CollectionController.php";
 require_once "app/Controller/AppareilController.php";
+require_once "app/Controller/CollectionController.php";
+require_once "app/Controller/IndexController.php";
 
-$page = $_GET['page'] ?? 'index';
+$controller = null;
+$route = $_GET['route'] ?? 'index';
 
-switch ($page) {
+switch ($route) {
+    case 'appareils_pays':
+        if (!isset($_GET['pays'])) die("Aucun pays sélectionné.");
+        $controller = new AppareilController();
+        $controller->appareilsParPays($_GET['pays']);
+        break;
+
     case 'collection':
-        (new CollectionController())->afficherCollection($_GET['country'] ?? '');
+        $controller = new CollectionController();
+        $controller->afficherCollection();
         break;
 
-    case 'appareil':
-        (new AppareilController())->afficherAppareil($_GET['id'] ?? null);
-        break;
-
+    case 'index':
     default:
-        (new IndexController())->afficherAccueil();
+        $controller = new IndexController();
+        $controller->afficherAccueil();
         break;
 }
-?>

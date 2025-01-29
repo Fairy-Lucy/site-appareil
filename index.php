@@ -1,3 +1,3 @@
 <?php
-require_once "router.php"; // Charge le routeur
-?>
+header("Location: router.php?route=accueil");
+exit;
