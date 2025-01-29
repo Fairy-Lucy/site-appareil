@@ -1,5 +1,5 @@
 <?php
-require_once "app/Model/AppareilModel.php";
+require_once "../Model/AppareilModel.php";
 
 class AppareilController {
     private $model;
@@ -8,14 +8,8 @@ class AppareilController {
         $this->model = new AppareilModel();
     }
 
-    // Affiche les appareils d'un pays
     public function appareilsParPays($pays) {
         $appareils = $this->model->getAppareilsByCountry($pays);
-        require "../View/pays/paysView.php";  // Passe les données à la vue
-    }
-
-    // Récupère la liste des pays
-    public function getCountries() {
-        return $this->model->getAllCountries();
+        require __DIR__ . "../View/pays/paysView.php";
     }
 }

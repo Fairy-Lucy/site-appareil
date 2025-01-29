@@ -1,17 +1,10 @@
-<?php
-require_once __DIR__ . "/../../../app/Controller/AppareilController.php";
-if (!isset($countries)) {
-    $countries = []; // Assure que la variable existe pour éviter des erreurs
-}
-?>
-
 <nav>
+    <link rel="stylesheet" href="../../../public/css/navbar/styleNavbar.css">
     <ul>
-        <li><a href="../index/indexView.php">Accueil</a></li>
-        <?php foreach ($countries as $country): ?>
-            <li><a href="/router.php?route=appareils_pays&pays=<?= urlencode($country['pays']) ?>">
-                    <?= htmlspecialchars($country['pays']) ?>
-                </a></li>
-        <?php endforeach; ?>
+        <li><a href="/index.php">Accueil</a></li>
+        <li><a href="/router.php?route=appareils_pays&pays=France">France</a></li>
+        <li><a href="/router.php?route=appareils_pays&pays=Allemagne">Allemagne</a></li>
+        <li><a href="/router.php?route=appareils_pays&pays=Japon">Japon</a></li>
+        <li><a href="/router.php?route=appareils_pays&pays=USA">USA</a></li>
     </ul>
 </nav>
