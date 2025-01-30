@@ -13,8 +13,8 @@
 
 <!-- Section Accueil -->
 <section class="intro">
-    <h1>Bienvenue dans ma Collection d'Appareils Photo</h1>
-    <p>Découvrez ici une variété d'appareils photo, anciens et modernes, que j'ai eu la chance de collectionner au fil des années.</p>
+    <h1>Pouet pouet ce sont mes appareils photo</h1>
+    <p>je tente de trouver un truc pour les afficher</p>
 </section>
 
 <!-- Galerie de Photos -->
