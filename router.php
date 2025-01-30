@@ -17,6 +17,16 @@ switch ($route) {
         $controller->appareilsParPays($pays);
         break;
 
+    case 'appareil_details':
+        $id = $_GET['id'] ?? null;
+        if ($id === null) {
+            header("Location: /error.php?msg=Aucun+appareil+sélectionné.");
+            exit();
+        }
+        $controller = new AppareilController();
+        $controller->appareilDetails($id);
+        break;
+
     case 'index':
     default:
         $controller = new IndexController();

@@ -33,3 +33,8 @@
 .appareil-card:hover {
     transform: scale(1.05);
 }
+.appareil-card-link {
+    display: block;
+    text-decoration: none; /* Enlever la décoration de lien (soulignement) */
+    color: inherit; /* Hérite de la couleur du texte de la carte */
+}

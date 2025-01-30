@@ -14,11 +14,13 @@
 <?php if (!empty($appareils)): ?>
     <div class="appareil-container">
         <?php foreach ($appareils as $appareil): ?>
-            <div class="appareil-card">
-                <img src="/public/images/appareils/<?= htmlspecialchars($appareil['image']) ?>" alt="<?= htmlspecialchars($appareil['nom_appareil']) ?>">
-                <h3><?= htmlspecialchars($appareil['nom_appareil']) ?></h3>
-                <p>(<?= $appareil['annee_debut'] ?> - <?= $appareil['annee_fin'] ?>)</p>
-            </div>
+            <a href="/router.php?route=appareil_details&id=<?= htmlspecialchars($appareil['id']) ?>" class="appareil-card-link">
+                <div class="appareil-card">
+                    <img src="/public/images/appareils/<?= htmlspecialchars($appareil['image']) ?>" alt="<?= htmlspecialchars($appareil['nom_appareil']) ?>">
+                    <h3><?= htmlspecialchars($appareil['nom_appareil']) ?></h3>
+                    <p>(<?= $appareil['annee_debut'] ?> - <?= $appareil['annee_fin'] ?>)</p>
+                </div>
+            </a>
         <?php endforeach; ?>
     </div>
 <?php else: ?>

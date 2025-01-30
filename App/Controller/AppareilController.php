@@ -12,4 +12,13 @@ class AppareilController {
         $appareils = $this->model->getAppareilsByCountry($pays);
         require "App/View/pays/paysView.php";
     }
+
+    public function appareilDetails($id) {
+        $appareil = $this->model->getAppareilById($id);
+        if ($appareil) {
+            require "App/View/appareil/appareilView.php";
+        } else {
+            echo "Appareil non trouvé.";
+        }
+    }
 }
