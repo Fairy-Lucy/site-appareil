@@ -2,6 +2,6 @@
 class CollectionController {
     public function afficherCollection() {
         $pays = $_GET['country'] ?? 'Tous';
-        require "../View/collection/collectionView.php";
+        require "App/View/collection/collectionView.php";
     }
 }

@@ -9,7 +9,7 @@
 <body>
 
 <!-- Navbar -->
-<?php require "../navbar/navbarView.php"; ?>
+<?php require "App/View/navbar/navbarView.php"; ?>
 
 <!-- Section Accueil -->
 <section class="intro">

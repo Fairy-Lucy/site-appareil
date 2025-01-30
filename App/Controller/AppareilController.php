@@ -1,5 +1,5 @@
 <?php
-require_once "../Model/AppareilModel.php";
+require_once "App/Model/AppareilModel.php";
 
 class AppareilController {
     private $model;
@@ -10,6 +10,6 @@ class AppareilController {
 
     public function appareilsParPays($pays) {
         $appareils = $this->model->getAppareilsByCountry($pays);
-        require __DIR__ . "../View/pays/paysView.php";
+        require "App/View/pays/paysView.php";
     }
 }

@@ -5,7 +5,7 @@ class AppareilModel {
     private $db;
 
     public function __construct() {
-        $this->db = Database::getInstance()->getConnection();
+        $this->db = Database::getConnection();
     }
 
     public function ajouterAppareil($nom, $pays, $debut, $fin, $commentaire) {

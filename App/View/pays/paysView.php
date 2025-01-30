@@ -7,9 +7,9 @@
 </head>
 <body>
 
-<?php require "../navbar/navbarView.php"; ?>
+<?php require "App/View/navbar/navbarView.php"; ?>
 
-<h1>Collection d'appareils photo en <?= htmlspecialchars($pays) ?></h1>
+<h1>Appareils photo fabriqués en <?= htmlspecialchars($pays) ?></h1>
 
 <?php if (!empty($appareils)): ?>
     <ul>

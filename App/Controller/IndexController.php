@@ -1,7 +1,6 @@
 <?php
 class IndexController {
     public function afficherAccueil() {
-        require "../View/index/indexView.php";
+        require "App/View/index/indexView.php";
     }
 }
-?>

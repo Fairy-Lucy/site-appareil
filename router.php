@@ -1,21 +1,25 @@
 <?php
-require_once "app/Controller/AppareilController.php";
-require_once "app/Controller/IndexController.php";
+
+require_once "App/Model/AppareilModel.php";
+require_once "App/Controller/AppareilController.php";
+require_once "App/Controller/IndexController.php";
 
 $route = $_GET['route'] ?? 'index';
 
 switch ($route) {
-case 'appareils_pays':
-if (!isset($_GET['pays'])) {
-die("Aucun pays sélectionné.");
-}
-$controller = new AppareilController();
-$controller->appareilsParPays($_GET['pays']);
-break;
+    case 'appareils_pays':
+        $pays = $_GET['pays'] ?? null;
+        if ($pays === null) {
+            header("Location: /error.php?msg=Aucun+pays+sélectionné.");
+            exit();
+        }
+        $controller = new AppareilController();
+        $controller->appareilsParPays($pays);
+        break;
 
-case 'index':
-default:
-$controller = new IndexController();
-$controller->afficherAccueil();
-break;
+    case 'index':
+    default:
+        $controller = new IndexController();
+        $controller->afficherAccueil();
+        break;
 }
