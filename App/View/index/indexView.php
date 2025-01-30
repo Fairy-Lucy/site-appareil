@@ -34,6 +34,35 @@
     </div>
 </section>
 
+<!-- Statistiques -->
+<section class="stats">
+    <h2>Statistiques de ma Collection</h2>
+    <table>
+        <tr>
+            <th>Total Appareils</th>
+            <td><?= $totalAppareils ?></td>
+        </tr>
+        <tr>
+            <th>Année la plus ancienne</th>
+            <td><?= $anneePlusAncienne ?></td>
+        </tr>
+        <tr>
+            <th>Année la plus récente</th>
+            <td><?= $anneePlusRecente ?></td>
+        </tr>
+        <tr>
+            <th>Appareils par Pays</th>
+            <td>
+                <ul>
+                    <?php foreach ($appareilsParPays as $pays => $count): ?>
+                        <li><?= htmlspecialchars($pays) ?>: <?= $count ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</section>
+
 <!-- Section A propos -->
 <section class="about">
     <h2>À Propos de Ma Collection</h2>

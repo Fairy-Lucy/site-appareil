@@ -29,7 +29,7 @@ body {
 
 .intro p {
     font-size: 1.2rem;
-    color: #666;
+    color: #555;  /* Contraste plus fort */
     max-width: 800px;
     margin: 0 auto;
 }
@@ -81,7 +81,7 @@ body {
 
 .about p {
     font-size: 1.2rem;
-    color: #666;
+    color: #555;  /* Contraste amélioré */
     max-width: 800px;
     margin: 0 auto;
 }
@@ -107,7 +107,8 @@ body {
 }
 
 .cta button:hover {
-    background-color: #0077cc;
+    background-color: #0066b3;  /* Couleur plus foncée */
+    transform: scale(1.05);  /* Effet de zoom au survol */
 }
 
 /* Footer */
@@ -136,7 +137,63 @@ section {
 }
 
 /* Différentes durées pour chaque section */
-.intro { animation-duration: 1s; }
-.gallery { animation-duration: 1.2s; }
-.about { animation-duration: 1.4s; }
-.cta { animation-duration: 1.6s; }
+.intro { animation-duration: 1s; animation-delay: 0.2s; }
+.gallery { animation-duration: 1.2s; animation-delay: 0.4s; }
+.about { animation-duration: 1.4s; animation-delay: 0.6s; }
+.cta { animation-duration: 1.6s; animation-delay: 0.8s; }
+
+/* Section Statistiques */
+.stats {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.stats h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.stats table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.stats th, .stats td {
+    padding: 15px;  /* Espacement supplémentaire */
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.stats th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.stats td {
+    background-color: #fff;
+}
+
+.stats ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.stats ul li {
+    margin: 5px 0;
+}
+
+/* Galerie responsive */
+@media (max-width: 768px) {
+    .photo-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-gallery {
+        grid-template-columns: 1fr;
+    }
+}
