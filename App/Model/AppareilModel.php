@@ -56,4 +56,9 @@ class AppareilModel {
         $query = "SELECT MAX(annee_fin) FROM appareils_photo";
         return $this->db->query($query)->fetchColumn();
     }
+    public function getAppareilsParAnnee() {
+        $query = "SELECT annee_debut, COUNT(*) as count FROM appareils_photo GROUP BY annee_debut ORDER BY annee_debut";
+        return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

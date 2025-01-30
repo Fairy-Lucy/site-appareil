@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ma Collection d'Appareils Photo</title>
     <link rel="stylesheet" href="../../../public/css/index/styleIndex.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -61,6 +62,40 @@
             </td>
         </tr>
     </table>
+</section>
+
+<!-- Diagramme des Appareils par Année -->
+<section class="chart">
+    <h2>Répartition des Appareils par Année</h2>
+    <canvas id="appareilsParAnneeChart"></canvas>
+    <script>
+        const ctx = document.getElementById('appareilsParAnneeChart').getContext('2d');
+        const appareilsParAnneeData = <?php echo json_encode($appareilsParAnnee); ?>;
+
+        const chartLabels = appareilsParAnneeData.map(item => item.annee_debut);
+        const chartData = appareilsParAnneeData.map(item => item.count);
+
+        const appareilsParAnneeChart = new Chart(ctx, {
+            type: 'bar', // Type de graphique : barres
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Nombre d\'appareils',
+                    data: chartData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </section>
 
 <!-- Section A propos -->
