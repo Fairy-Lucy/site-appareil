@@ -16,6 +16,8 @@ class AppareilController {
     public function appareilDetails($id) {
         $appareil = $this->model->getAppareilById($id);
         if ($appareil) {
+            $images = $this->model->getImagesByAppareilId($id);
+            $description = $this->model->getDescriptionById($appareil['description_id']);
             require "App/View/appareil/appareilView.php";
         } else {
             echo "Appareil non trouvé.";

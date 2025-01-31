@@ -17,6 +17,7 @@ nav ul {
 nav ul li {
     display: inline-block;
     margin-right: 20px;
+    position: relative;
 }
 
 nav ul li a {
@@ -25,8 +26,51 @@ nav ul li a {
     font-weight: bold;
     font-size: 18px;
     padding: 10px;
+    transition: color 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
     color: #00aaff;
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    padding: 10px 0;
+    border-radius: 0 0 5px 5px;
+}
+
+nav ul li ul li {
+    display: block;
+    margin: 0;
+}
+
+nav ul li ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul li ul li a:hover {
+    color: #00aaff;
+}
+
+ul li:hover > ul {
+    display: block;
+}
+
+nav ul li:hover::before{
+    /* on hover of parent element display the triangle on top-center of the actual dropdown*/
+    top: -12px;
+    opacity: 1;
+}
+body {
+    /* add a top margin that matches the height of the navbar */
+    margin-top: 50px; /* adjust this to match your navbar's height */
 }

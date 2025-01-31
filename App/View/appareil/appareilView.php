@@ -12,11 +12,16 @@
 <h1>Détails de l'appareil : <?= htmlspecialchars($appareil['nom_appareil']) ?></h1>
 
 <div class="appareil-details">
-    <img src="/public/images/appareils/<?= htmlspecialchars($appareil['image']) ?>" alt="<?= htmlspecialchars($appareil['nom_appareil']) ?>">
+    <div class="image-gallery">
+        <?php foreach ($images as $image): ?>
+            <img src="/public/images/appareils/<?= htmlspecialchars($image) ?>" alt="Image de <?= htmlspecialchars($appareil['nom_appareil']) ?>">
+        <?php endforeach; ?>
+    </div>
     <p><strong>Nom :</strong> <?= htmlspecialchars($appareil['nom_appareil']) ?></p>
     <p><strong>Fabrication :</strong> <?= $appareil['annee_debut'] ?> - <?= $appareil['annee_fin'] ?></p>
     <p><strong>Pays :</strong> <?= htmlspecialchars($appareil['pays']) ?></p>
     <p><strong>Commentaire :</strong> <?= htmlspecialchars($appareil['remarques']) ?></p>
+    <p><strong>Description :</strong> <?= htmlspecialchars($description) ?></p>
 </div>
 
 </body>

@@ -61,4 +61,16 @@ class AppareilModel {
         return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getImagesByAppareilId($id) {
+        $stmt = $this->db->prepare("SELECT chemin FROM images_appareil WHERE appareil_id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+
+    public function getDescriptionById($descriptionId) {
+        $stmt = $this->db->prepare("SELECT contenu FROM descriptions WHERE id = ?");
+        $stmt->execute([$descriptionId]);
+        return $stmt->fetchColumn();
+    }
+
 }

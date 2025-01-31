@@ -20,7 +20,7 @@
 
 <!-- Galerie de Photos -->
 <section class="gallery">
-    <h2>Galerie de Ma Collection</h2>
+    <h2>Quelques Photo</h2>
     <div class="photo-gallery">
         <a href="../../../public/images/yashica-mat-124.jpg" data-lightbox="gallery" data-title="Appareil Photo 1">
             <img src="../../../public/images/yashica-mat-124.jpg" alt="yashica mat 124">
@@ -37,7 +37,7 @@
 
 <!-- Statistiques -->
 <section class="stats">
-    <h2>Statistiques de ma Collection</h2>
+    <h2>Quelques Stats</h2>
     <table>
         <tr>
             <th>Total Appareils</th>
