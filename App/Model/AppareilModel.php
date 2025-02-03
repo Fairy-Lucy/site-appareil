@@ -73,4 +73,11 @@ class AppareilModel {
         return $stmt->fetchColumn();
     }
 
+    public function getAppareilByFabricant($fabriquant)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM appareils_photo WHERE fabricant = ? ORDER BY annee_debut DESC");
+        $stmt->execute([$fabriquant]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

@@ -197,3 +197,7 @@ section {
         grid-template-columns: 1fr;
     }
 }
+
+.chart {
+    height: 50vh; // ou toute autre taille que vous souhaitez
+}

@@ -14,7 +14,7 @@
 
 <!-- Section Accueil -->
 <section class="intro">
-    <h1>Pouet pouet ce sont mes appareils photo</h1>
+    <h1>Pouet pouet c'est sont mes appareils photo</h1>
     <p>je tente de trouver un truc pour les afficher</p>
 </section>
 
@@ -88,6 +88,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true

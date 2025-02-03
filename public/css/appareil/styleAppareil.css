@@ -1,15 +1,18 @@
+h1 {
+    margin: 80px auto;
+}
 .appareil-details {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 50px 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
+    text-align: center;
 }
 
 .appareil-details h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 20px;
     color: #333;
 }
@@ -18,14 +21,14 @@
     width: 100%;
     max-width: 500px;
     margin: 20px 0;
-    border-radius: 12px;
+    border-radius: 8px;
 }
 
 .appareil-details p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+    font-size: 1.2rem;
     color: #555;
-    margin-bottom: 10px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .appareil-details p strong {
@@ -36,16 +39,24 @@
 .appareil-details .back-link {
     display: inline-block;
     margin-top: 20px;
-    font-size: 1.1rem;
-    color: #007BFF;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
     text-decoration: none;
-    border: 1px solid #007BFF;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .appareil-details .back-link:hover {
-    background-color: #007BFF;
-    color: white;
+    background-color: #0066b3;
+    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+    .appareil-details {
+        padding: 50px 10px;
+    }
 }
