@@ -7,19 +7,32 @@ class AppareilModel {
     public function __construct() {
         $this->db = Database::getConnection();
     }
-    public function ajouterAppareil($nom, $pays, $debut, $fin, $commentaire) {
-    $sql = "INSERT INTO appareils_photo (nom_appareil, pays, annee_debut, annee_fin, remarques, date_ajout) 
-                VALUES (:nom, :pays, :debut, :fin, :commentaire, NOW())";
+    public function ajouterAppareil($fabriquant, $nom, $pays, $debut, $fin, $commentaire, $description) {
+        $modele = $fabriquant . " " . $nom;
+        $descriptionSql = "INSERT INTO descriptions (modele, contenu) VALUES (:modele, :contenu) RETURNING id";
+        $descriptionStmt = $this->db->prepare($descriptionSql);
+        $descriptionStmt->execute([
+            ':modele' => $modele,  // Le modèle est maintenant fabriquant + nom
+            ':contenu' => $description // Contenu de la description
+        ]);
 
-    $stmt = $this->db->prepare($sql);
-    return $stmt->execute([
-        ':nom' => $nom,
-        ':pays' => $pays,
-        ':debut' => $debut,
-        ':fin' => $fin,
-        ':commentaire' => $commentaire
-    ]);
-}
+        $descriptionId = $descriptionStmt->fetchColumn();
+
+        $sql = "INSERT INTO appareils_photo (fabriquant, nom_appareil, pays, annee_debut, annee_fin, date_ajout, remarques, description_id) 
+            VALUES (:fabriquant, :nom, :pays, :debut, :fin, NOW(), :commentaire, :description_id)";
+
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            ':fabriquant' => $fabriquant,
+            ':nom' => $nom,
+            ':pays' => $pays,
+            ':debut' => $debut,
+            ':fin' => $fin,
+            ':commentaire' => $commentaire,
+            ':description_id' => $descriptionId
+        ]);
+    }
+
     public function getTotalAppareils() {
         $query = "SELECT COUNT(*) FROM appareils_photo";
         return $this->db->query($query)->fetchColumn();
@@ -73,9 +86,9 @@ class AppareilModel {
         return $stmt->fetchColumn();
     }
 
-    public function getAppareilByFabricant($fabriquant)
+    public function getAppareilByFabriquant($fabriquant)
     {
-        $stmt = $this->db->prepare("SELECT * FROM appareils_photo WHERE fabricant = ? ORDER BY annee_debut DESC");
+        $stmt = $this->db->prepare("SELECT * FROM appareils_photo WHERE fabriquant = ? ORDER BY annee_debut DESC");
         $stmt->execute([$fabriquant]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

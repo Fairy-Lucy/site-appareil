@@ -17,6 +17,9 @@
 <?php endif; ?>
 
 <form action="../../Controller/ajout/ajoutController.php" method="post">
+    <label for="fabriquant">Fabriquant :</label>
+    <input type="text" id="fabriquant" name="fabriquant" required>
+
     <label for="nom">Nom :</label>
     <input type="text" id="nom" name="nom" required>
 
@@ -31,6 +34,9 @@
 
     <label for="commentaire">Commentaire :</label>
     <textarea id="commentaire" name="commentaire"></textarea>
+
+    <label for="description">Description :</label>
+    <textarea id="description" name="description" rows="5"></textarea>
 
     <button type="submit">Ajouter</button>
 </form>
