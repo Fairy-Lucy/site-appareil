@@ -2,14 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($appareil['fabriquant']) ?><?= htmlspecialchars($appareil['nom_appareil']) ?></title>
+    <title><?= htmlspecialchars($appareil['fabricant']) ?><?= htmlspecialchars($appareil['nom_appareil']) ?></title>
     <link rel="stylesheet" href="/public/css/appareil/styleAppareil.css">
 </head>
 <body>
 
 <?php require "App/View/navbar/navbarView.php"; ?>
 
-<h1>Détails de l'appareil : <?= htmlspecialchars($appareil['fabriquant']) ?> <?= htmlspecialchars($appareil['nom_appareil']) ?></h1>
+<h1>Détails de l'appareil : <?= htmlspecialchars($appareil['fabricant']) ?> <?= htmlspecialchars($appareil['nom_appareil']) ?></h1>
 
 <div class="appareil-details">
     <div class="image-gallery">

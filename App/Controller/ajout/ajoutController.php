@@ -1,32 +1,61 @@
 <?php
-require_once __DIR__ . "/../../Model/Database.php";
-require_once __DIR__ . "/../../Model/AppareilModel.php";
+require_once "App/Model/Database.php";
+require_once "App/Model/AjoutModel.php";
 
 class AjoutController {
-    public function ajouterAppareil() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $fabriquant = trim($_POST['fabriquant']);
-            $nom = trim($_POST['nom']);
-            $pays = trim($_POST['pays']);
-            $debut = intval($_POST['debut']);
-            $fin = intval($_POST['fin']);
-            $commentaire = trim($_POST['commentaire']);
-            $description = trim($_POST['description']);
+    private $ajoutModel;
 
-            if (!empty($nom) && !empty($pays) && $debut > 0 && $fin > 0) {
-                $appareilModel = new AppareilModel();
-                $ajoutReussi = $appareilModel->ajouterAppareil($fabriquant, $nom, $pays, $debut, $fin, $commentaire, $description);
+    public function __construct() {
+        $this->ajoutModel = new AjoutModel();
+    }
 
-                if ($ajoutReussi) {
-                    header("Location: ../../index.php?page=collection&success=1");
-                    exit();
-                } else {
-                    echo "Erreur lors de l'ajout.";
+    public function ajouterAppareil($step) {
+        switch ($step) {
+            case 1:
+                $fabricants = $this->ajoutModel->getFabricants();
+                include "App/View/ajout/ajoutView.php";
+                break;
+
+            case 2:
+                $fabricant = $_GET['fabricant'] ?? '';
+                $modeles = $this->ajoutModel->getModelesParFabricant($fabricant);
+                include "App/View/ajout/ajoutView.php";
+                break;
+
+            case 3:
+                $fabricant = $_POST['fabricant'];
+                $modele = $_POST['modele'] ?? $_POST['nouveau_modele'];
+
+                // Récupérer les détails si le modèle existe
+                $detailsModele = $this->ajoutModel->getDetailsModele($fabricant, $modele);
+
+                include "App/View/ajout/ajoutView.php";
+                break;
+
+
+            case 4:
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $fabricant = $_POST['fabricant'] ?? '';
+                    $modele = $_POST['modele'] ?? '';
+                    $pays = $_POST['pays'];
+                    $debut = $_POST['debut'];
+                    $fin = $_POST['fin'];
+                    $commentaire = $_POST['commentaire'];
+                    $description = $_POST['description'];
+
+                    $success = $this->ajoutModel->ajouterAppareil($fabricant, $modele, $pays, $debut, $fin, $commentaire, $description);
+                    if ($success) {
+                        header("Location: router.php?route=collection&success=1");
+                        exit();
+                    } else {
+                        echo "Erreur lors de l'ajout.";
+                    }
                 }
-            } else {
-                echo "Veuillez remplir tous les champs obligatoires.";
-            }
+                break;
+
+            default:
+                header("Location: router.php?route=ajouter_appareil&step=1");
+                break;
         }
-        include "App/View/ajout/ajoutView.php";
     }
 }

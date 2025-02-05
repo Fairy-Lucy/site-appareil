@@ -1,7 +1,7 @@
 
 CREATE TABLE appareils_photo (
     id SERIAL PRIMARY KEY,
-    fabriquant VARCHAR(255),
+    fabricant VARCHAR(255),
     nom_appareil VARCHAR(255),
     pays VARCHAR(100),
     annee_debut INT,

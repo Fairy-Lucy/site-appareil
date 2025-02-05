@@ -17,7 +17,7 @@
             <a href="/router.php?route=appareil_details&id=<?= htmlspecialchars($appareil['id']) ?>" class="appareil-card-link">
                 <div class="appareil-card">
                     <img src="/public/images/<?= htmlspecialchars($appareil['image'] ?? 'default.jpg') ?>" alt="<?= htmlspecialchars($appareil['fabriquant']) ?> <?= htmlspecialchars($appareil['nom_appareil']) ?>">
-                    <h3><?= htmlspecialchars($appareil['fabriquant']) ?> <?= htmlspecialchars($appareil['nom_appareil']) ?></h3>
+                    <h3><?= htmlspecialchars($appareil['fabricant']) ?> <?= htmlspecialchars($appareil['nom_appareil']) ?></h3>
                     <p>(<?= $appareil['annee_debut'] ?> - <?= $appareil['annee_fin'] ?>)</p>
                 </div>
             </a>
