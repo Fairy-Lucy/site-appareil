@@ -13,7 +13,6 @@
 <h1>Ajouter un Nouvel Appareil Photo</h1>
 
 <form id="ajoutForm" method="post" action="router.php?route=ajouter_appareil&step=4">
-    <!-- Étape 1 : Sélection du fabricant -->
     <?php if ($_GET['step'] == 1 || !isset($_GET['step'])): ?>
         <label>Fabricant :</label>
         <select name="fabricant" id="fabricant">
@@ -24,7 +23,6 @@
         <button type="button" onclick="goToStep2()">Suivant</button>
     <?php endif; ?>
 
-    <!-- Étape 2 : Sélection du modèle -->
     <?php if ($_GET['step'] == 2): ?>
         <h2>Modèles de <?= htmlspecialchars($_GET['fabricant']) ?></h2>
         <select name="modele" id="modele">
@@ -35,23 +33,19 @@
         <button type="button" onclick="goToStep3()">Suivant</button>
     <?php endif; ?>
 
-    <!-- Étape 3 : Détails -->
     <?php if ($_GET['step'] == 3): ?>
         <h2>Détails du modèle <?= htmlspecialchars($_GET['modele']) ?></h2>
         <label>Pays :</label>
-        <input type="text" name="pays" value="<?= htmlspecialchars($detailsModele['pays'] ?? '') ?>" required>
+        <input type="text" name="pays" value="<?= htmlspecialchars($PaysModele) ?>" required>
 
         <label>Année de début :</label>
-        <input type="number" name="debut" value="<?= htmlspecialchars($detailsModele['annee_debut'] ?? '') ?>" required>
+        <input type="number" name="debut" value="<?= htmlspecialchars($Annee_DebutModele) ?>" required>
 
         <label>Année de fin :</label>
-        <input type="number" name="fin" value="<?= htmlspecialchars($detailsModele['annee_fin'] ?? '') ?>" required>
-
-        <label>Commentaire :</label>
-        <textarea name="commentaire"></textarea> <!-- Pas de préremplissage ici -->
+        <input type="number" name="fin" value="<?= htmlspecialchars($Annee_FinModele) ?>" required>
 
         <label>Description :</label>
-        <textarea name="description"><?= htmlspecialchars($detailsModele['description'] ?? '') ?></textarea>
+        <textarea name="description"><?= htmlspecialchars($DescriptionModele) ?></textarea>
 
         <button type="submit">Ajouter l'appareil</button>
     <?php endif; ?>

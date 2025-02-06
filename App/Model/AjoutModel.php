@@ -22,22 +22,18 @@ class AjoutModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
     public function getDetailsModele($fabricant, $modele) {
         $sql = "SELECT ap.pays, ap.annee_debut, ap.annee_fin, d.contenu AS description
-            FROM appareils_photo ap
-            LEFT JOIN descriptions d ON ap.description_id = d.id
-            WHERE ap.fabricant = :fabricant AND ap.nom_appareil = :modele
-            LIMIT 1";
+                FROM appareils_photo ap
+                LEFT JOIN descriptions d ON ap.description_id = d.id
+                WHERE ap.fabricant = :fabricant AND ap.nom_appareil = :modele
+                LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':fabricant' => $fabricant, ':modele' => $modele]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
     public function ajouterAppareil($fabricant, $nom, $pays, $debut, $fin, $commentaire, $description) {
-
         $modele = $fabricant . " " . $nom;
 
         // Vérifie si la description existe déjà
