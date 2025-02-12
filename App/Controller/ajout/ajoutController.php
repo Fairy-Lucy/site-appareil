@@ -18,13 +18,26 @@ class AjoutController {
 
             case 2:
                 $fabricant = $_GET['fabricant'] ?? '';
+
+                // Ajouter un nouveau fabricant si saisi
+                if (!empty($_POST['nouveau_fabricant'])) {
+                    $fabricant = $_POST['nouveau_fabricant'];
+                    $this->ajoutModel->ajouterFabricant($fabricant);
+                }
+
                 $modeles = $this->ajoutModel->getModelesParFabricant($fabricant);
                 include "App/View/ajout/ajoutView.php";
                 break;
 
             case 3:
-                $fabricant = $_GET['fabricant'] ?? $_POST['fabricant'] ?? '';
-                $modele = $_GET['modele'] ?? $_POST['modele'] ?? $_POST['nouveau_modele'] ?? '';
+                $fabricant = $_GET['fabricant'] ?? '';
+                $modele = $_GET['modele'] ?? '';
+
+                // Ajouter un nouveau modèle si saisi
+                if (!empty($_POST['nouveau_modele'])) {
+                    $modele = $_POST['nouveau_modele'];
+                    $this->ajoutModel->ajouterModele($fabricant, $modele);
+                }
 
                 // Récupérer les détails si le modèle existe
                 $detailsModele = $this->ajoutModel->getDetailsModele($fabricant, $modele);
@@ -32,7 +45,6 @@ class AjoutController {
                 $Annee_DebutModele = $detailsModele['annee_debut'] ?? '';
                 $Annee_FinModele = $detailsModele['annee_fin'] ?? '';
                 $DescriptionModele = $detailsModele['description'] ?? '';
-
                 include "App/View/ajout/ajoutView.php";
                 break;
 

@@ -59,6 +59,18 @@ class AjoutModel {
         ]);
     }
 
+    public function ajouterFabricant($fabricant) {
+        $sql = "INSERT INTO appareils_photo (fabricant) VALUES (:fabricant) ON CONFLICT DO NOTHING";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':fabricant' => $fabricant]);
+    }
+
+    public function ajouterModele($fabricant, $modele) {
+        $sql = "INSERT INTO appareils_photo (fabricant, nom_appareil) VALUES (:fabricant, :modele) ON CONFLICT DO NOTHING";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([':fabricant' => $fabricant, ':modele' => $modele]);
+    }
+
     private function getDescriptionId($modele) {
         $sql = "SELECT id FROM descriptions WHERE modele = :modele";
         $stmt = $this->db->prepare($sql);
