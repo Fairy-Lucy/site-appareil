@@ -18,6 +18,7 @@
                 <li><a href="/router.php?route=appareils_pays&pays=USA">USA</a></li>
             </ul>
         </li>
+        <li><a href="/router.php?route=appareils_fabricants">Fabricants</a></li>
         <li><a href="/router.php?route=ajouter_appareil">Ajouter un appareil</a></li>
         <li><a href="/router.php?route=contact">Contact</a></li>
     </ul>

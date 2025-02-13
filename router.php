@@ -12,6 +12,10 @@ switch ($route) {
         (new AppareilController())->appareilsParPays($pays);
         break;
 
+    case 'appareils_fabricants':
+        (new AppareilController())->appareilsParFabricant();
+        break;
+
     case 'appareil_details':
         $id = $_GET['id'] ?? null;
         (new AppareilController())->appareilDetails($id);

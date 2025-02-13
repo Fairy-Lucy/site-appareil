@@ -23,4 +23,9 @@ class AppareilController {
             echo "Appareil non trouvé.";
         }
     }
+    public function appareilsParFabricant() {
+        $model = new AppareilModel();
+        $appareils = $model->getAppareilsParFabricant();
+        require "App/View/fabricant/fabricantView.php";
+    }
 }

@@ -93,4 +93,10 @@ class AppareilModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAppareilsParFabricant() {
+        $sql = "SELECT * FROM appareils_photo ORDER BY fabricant, nom_appareil";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
