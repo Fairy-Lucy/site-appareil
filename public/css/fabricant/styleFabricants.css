@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.appareil-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.appareil-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    width: 250px;
+}
+
+.appareil-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.appareil-card h3 {
+    margin: 10px 0 5px;
+    font-size: 1.2rem;
+}
+
+.appareil-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.appareil-card:hover {
+    transform: scale(1.05);
+}
+
+.fabriquant-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 40px 0 10px;
+    position: relative;
+}
+
+.fabriquant-bar::before,
+.fabriquant-bar::after {
+    content: "";
+    flex-grow: 1;
+    height: 2px;
+    background-color: #888;
+    margin: 0 10px;
+}
+
+.fabriquant-bar span {
+    padding: 8px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: #333;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.appareil-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
