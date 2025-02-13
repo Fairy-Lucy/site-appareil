@@ -78,3 +78,24 @@ body {
     text-decoration: none;
     color: inherit;
 }
+
+.alphabet-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.alphabet-nav a {
+    text-decoration: none;
+    color: white;
+    background: #333;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.alphabet-nav a:hover {
+    background: #555;
+}
