@@ -99,3 +99,16 @@ body {
 .alphabet-nav a:hover {
     background: #555;
 }
+
+#erreur {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #d9534f;
+    background: #f8d7da;
+    border: 1px solid #d9534f;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

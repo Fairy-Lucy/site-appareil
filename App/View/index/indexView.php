@@ -6,6 +6,8 @@
     <title>Ma Collection d'Appareils Photo</title>
     <link rel="stylesheet" href="../../../public/css/index/styleIndex.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -64,6 +66,11 @@
     </table>
 </section>
 
+<section class="map-container">
+    <h2>Appareils par Pays</h2>
+    <div id="map" style="height: 500px;"></div>
+</section>
+
 <!-- Diagramme des Appareils par Année -->
 <section class="chart">
     <h2>Répartition des Appareils par Année</h2>
@@ -117,6 +124,45 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script>
+    var map = L.map('map').setView([20, 0], 2); // Vue initiale centrée sur le monde
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var appareilsParPays = <?= json_encode($appareilsParPays) ?>;
+
+    // Ajouter les marqueurs pour chaque pays
+    for (var pays in appareilsParPays) {
+        L.marker(getCoordinates(pays)).addTo(map)
+            .bindPopup(`<b>${pays}</b><br>${appareilsParPays[pays]} appareils`)
+            .on('click', function() {
+                // Récupération du texte brut du pays sans les balises HTML
+                let paysNom = this.getPopup().getContent().split('<br>')[0].replace(/<\/?b>/g, '');
+                window.location.href = `router.php?route=appareils_pays&pays=${encodeURIComponent(paysNom)}`;
+            });
+    }
+
+    function getCoordinates(pays) {
+        var coords = {
+            "Allemagne": [52.51859005314091, 13.37617519118166],
+            "Autriche":[48.204507619281, 16.36079244792706],
+            "Chine": [39.91195686171867, 116.39092691256604],
+            "France": [48.85822280995211, 2.294544153892626],
+            "Grande-bretagne": [51.50067848616132, 0.12455901567686167],
+            "Hong-Kong":[22.279255190697224,114.16156633276101],
+            "Italie":[41.890188338706494,12.492341623723654],
+            "Japon": [35.682427911284364, 139.7527462868448],
+            "Macao":[22.190951209997383, 113.54340261622636],
+            "Pays-Bas":[52.3731110239013,4.8913038111120555],
+            "Tchecoslovaquie":[50.09088931153374,14.400527482033825],
+            "URSS": [55.75372759279802, 37.6199055708892],
+            "USA": [40.711042594071046, -74.01309064703592]
+        };
+        return coords[pays] || [0, 0]; // Si pas trouvé, positionner à [0, 0]
+    }
+</script>
 
 </body>
 </html>

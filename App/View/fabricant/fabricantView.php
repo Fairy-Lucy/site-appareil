@@ -13,6 +13,7 @@
 
 <!-- Navigation alphabétique -->
 <div class="alphabet-nav">
+    <a href="?route=appareils_fabricants">Tout</a> <!-- Ajout de l'option "Tout" -->
     <?php foreach (range('A', 'Z') as $letter): ?>
         <a href="?route=appareils_fabricants&letter=<?= $letter ?>"><?= $letter ?></a>
     <?php endforeach; ?>
@@ -27,16 +28,19 @@ usort($appareils, function ($a, $b) {
 });
 
 $currentFabricant = null;
+$filteredAppareils = [];
+
+foreach ($appareils as $appareil) {
+    if (!$letterFilter || strtoupper($appareil['fabricant'][0]) === $letterFilter) {
+        $filteredAppareils[] = $appareil;
+    }
+}
 ?>
 
-<?php if (!empty($appareils)): ?>
+<?php if (!empty($filteredAppareils)): ?>
     <div class="appareil-container">
-        <?php foreach ($appareils as $appareil): ?>
+        <?php foreach ($filteredAppareils as $appareil): ?>
             <?php
-            if ($letterFilter && strtoupper($appareil['fabricant'][0]) !== $letterFilter) {
-                continue;
-            }
-
             if ($appareil['fabricant'] !== $currentFabricant):
                 $currentFabricant = $appareil['fabricant'];
                 ?>
@@ -56,7 +60,7 @@ $currentFabricant = null;
         <?php endforeach; ?>
     </div>
 <?php else: ?>
-    <p>Aucun appareil trouvé.</p>
+    <p id="erreur">Aucun appareil trouvé pour la lettre "<strong><?= htmlspecialchars($letterFilter) ?></strong>".</p>
 <?php endif; ?>
 
 </body>
