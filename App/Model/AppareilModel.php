@@ -99,4 +99,19 @@ class AppareilModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getTimelineData() {
+        // Requête pour obtenir les appareils et leur date d'ajout
+        $query = "SELECT date_ajout FROM appareils_photo ORDER BY date_ajout";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        // Récupérer les résultats sous forme de tableau associatif
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Retourner les données pour être utilisées dans l'affichage de la timeline
+        return $result;
+    }
+
+
+
 }

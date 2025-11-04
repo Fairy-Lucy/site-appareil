@@ -8,10 +8,9 @@ class IndexController {
 
     public function afficherAccueil() {
         $totalAppareils = $this->model->getTotalAppareils();
-        $appareilsParPays = $this->model->getAppareilsParPays();
         $anneePlusAncienne = $this->model->getAnneePlusAncienne();
         $anneePlusRecente = $this->model->getAnneePlusRecente();
-
+        $timelineData = $this->model->getTimelineData();
         $appareilsParAnnee = $this->model->getAppareilsParAnnee();
 
         require "App/View/index/indexView.php";

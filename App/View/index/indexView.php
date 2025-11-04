@@ -71,6 +71,44 @@
     <div id="map" style="height: 500px;"></div>
 </section>
 
+<section class="timeline">
+    <h2>Historique d’Achat</h2>
+    <canvas id="timelineChart"></canvas>
+</section>
+
+<script>
+    const ctx = document.getElementById('timelineChart').getContext('2d');
+    const timelineData = <?php echo json_encode($timelineData); ?>;
+
+    const chartLabels = timelineData.map(item => item.annee);
+    const chartData = timelineData.map(item => item.count);
+
+    const timelineChart = new Chart(ctx, {
+        type: 'line', // Type de graphique : ligne
+        data: {
+            labels: chartLabels,
+            datasets: [{
+                label: 'Nombre d\'appareils par année',
+                data: chartData,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
 <!-- Diagramme des Appareils par Année -->
 <section class="chart">
     <h2>Répartition des Appareils par Année</h2>
@@ -154,13 +192,14 @@
             "Hong-Kong":[22.279255190697224,114.16156633276101],
             "Italie":[41.890188338706494,12.492341623723654],
             "Japon": [35.682427911284364, 139.7527462868448],
+            "Liechtenstein" : [47.13934600822916,9.52458380229659],
             "Macao":[22.190951209997383, 113.54340261622636],
             "Pays-Bas":[52.3731110239013,4.8913038111120555],
             "Tchecoslovaquie":[50.09088931153374,14.400527482033825],
             "URSS": [55.75372759279802, 37.6199055708892],
             "USA": [40.711042594071046, -74.01309064703592]
         };
-        return coords[pays] || [0, 0]; // Si pas trouvé, positionner à [0, 0]
+        return coords[pays] || [0, 0];
     }
 </script>
 
