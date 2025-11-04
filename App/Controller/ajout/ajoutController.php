@@ -13,7 +13,7 @@ class AjoutController {
         switch ($step) {
             case 1:
                 $fabricants = $this->ajoutModel->getFabricants();
-                include "App/View/ajout/ajoutView.php";
+                include_once "App/View/ajout/ajoutView.php";
                 break;
 
             case 2:
@@ -26,7 +26,7 @@ class AjoutController {
                 }
 
                 $modeles = $this->ajoutModel->getModelesParFabricant($fabricant);
-                include "App/View/ajout/ajoutView.php";
+                include_once "App/View/ajout/ajoutView.php";
                 break;
 
             case 3:
@@ -45,7 +45,7 @@ class AjoutController {
                 $Annee_DebutModele = $detailsModele['annee_debut'] ?? '';
                 $Annee_FinModele = $detailsModele['annee_fin'] ?? '';
                 $DescriptionModele = $detailsModele['description'] ?? '';
-                include "App/View/ajout/ajoutView.php";
+                include_once "App/View/ajout/ajoutView.php";
                 break;
 
             case 4:

@@ -10,7 +10,7 @@ class AppareilController {
 
     public function appareilsParPays($pays) {
         $appareils = $this->model->getAppareilsByCountry($pays);
-        require "App/View/pays/paysView.php";
+        require_once "App/View/pays/paysView.php";
     }
 
     public function appareilDetails($id) {
@@ -18,7 +18,7 @@ class AppareilController {
         if ($appareil) {
             $images = $this->model->getImagesByAppareilId($id);
             $description = $this->model->getDescriptionById($appareil['description_id']);
-            require "App/View/appareil/appareilView.php";
+            require_once "App/View/appareil/appareilView.php";
         } else {
             echo "Appareil non trouvé.";
         }
@@ -26,6 +26,6 @@ class AppareilController {
     public function appareilsParFabricant() {
         $model = new AppareilModel();
         $appareils = $model->getAppareilsParFabricant();
-        require "App/View/fabricant/fabricantView.php";
+        require_once "App/View/fabricant/fabricantView.php";
     }
 }

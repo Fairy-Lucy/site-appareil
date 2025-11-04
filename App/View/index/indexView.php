@@ -12,7 +12,7 @@
 <body>
 
 <!-- Navbar -->
-<?php require "App/View/navbar/navbarView.php"; ?>
+<?php require_once "App/View/navbar/navbarView.php"; ?>
 
 <!-- Section Accueil -->
 <section class="intro">

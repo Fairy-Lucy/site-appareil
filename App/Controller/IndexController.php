@@ -13,7 +13,7 @@ class IndexController {
         $timelineData = $this->model->getTimelineData();
         $appareilsParAnnee = $this->model->getAppareilsParAnnee();
 
-        require "App/View/index/indexView.php";
+        require_once "App/View/index/indexView.php";
     }
 
 }

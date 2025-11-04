@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<?php require __DIR__ . "/../navbar/navbarView.php"; ?>
+<?php require_once __DIR__ . "/../navbar/navbarView.php"; ?>
 
 <h1>Ajouter un Nouvel Appareil Photo</h1>
 

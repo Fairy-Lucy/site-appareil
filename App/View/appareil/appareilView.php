@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<?php require "App/View/navbar/navbarView.php"; ?>
+<?php require_once "App/View/navbar/navbarView.php"; ?>
 
 <h1>Détails de l'appareil : <?= htmlspecialchars($appareil['fabricant']) ?> <?= htmlspecialchars($appareil['nom_appareil']) ?></h1>
 

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<?php require "App/View/navbar/navbarView.php"; ?>
+<?php require_once "App/View/navbar/navbarView.php"; ?>
 
 <h1>Appareils photo fabriqués en <?= htmlspecialchars($pays) ?></h1>
 

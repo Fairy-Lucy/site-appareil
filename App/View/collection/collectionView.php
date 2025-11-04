@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<?php require "../../View/navbar/navbarView.php"; ?>
+<?php require_once "../../View/navbar/navbarView.php"; ?>
 
 <h1>Collection d'appareils photo en <?= htmlspecialchars($pays) ?></h1>
 
