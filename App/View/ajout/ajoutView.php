@@ -12,53 +12,72 @@
 
 <h1>Ajouter un Nouvel Appareil Photo</h1>
 
-<form id="ajoutForm" method="post" action="router.php?route=ajouter_appareil&step=<?= $_GET['step'] ?? 1 ?>">
+<?php
+$step = isset($_GET['step']) ? (int) $_GET['step'] : 1;
+$fabricant = isset($_GET['fabricant']) ? htmlspecialchars($_GET['fabricant'], ENT_QUOTES, 'UTF-8') : '';
+$modele = isset($_GET['modele']) ? htmlspecialchars($_GET['modele'], ENT_QUOTES, 'UTF-8') : '';
+?>
+
+<form id="ajoutForm" method="post"
+      action="router.php?route=ajouter_appareil&amp;step=<?= htmlspecialchars($step, ENT_QUOTES, 'UTF-8') ?>">
 
     <!-- Étape 1 : Sélection ou ajout d'un fabricant -->
-    <?php if ($_GET['step'] == 1 || !isset($_GET['step'])): ?>
-        <label>Fabricant :</label>
+    <?php if ($step === 1): ?>
+        <label for="fabricant">Fabricant :</label>
         <select name="fabricant" id="fabricant">
             <?php foreach ($fabricants as $fab): ?>
-                <option value="<?= htmlspecialchars($fab['fabricant']) ?>"><?= htmlspecialchars($fab['fabricant']) ?></option>
+                <option value="<?= htmlspecialchars($fab['fabricant'], ENT_QUOTES, 'UTF-8') ?>">
+                    <?= htmlspecialchars($fab['fabricant'], ENT_QUOTES, 'UTF-8') ?>
+                </option>
             <?php endforeach; ?>
         </select>
         <br>
-        <label>Nouveau fabricant :</label>
+
+        <label for="nouveau_fabricant">Nouveau fabricant :</label>
         <input type="text" name="nouveau_fabricant" id="nouveau_fabricant">
         <button type="button" onclick="goToStep2()">Suivant</button>
     <?php endif; ?>
 
     <!-- Étape 2 : Sélection ou ajout d'un modèle -->
-    <?php if ($_GET['step'] == 2): ?>
-        <h2>Modèles de <?= htmlspecialchars($_GET['fabricant']) ?></h2>
+    <?php if ($step === 2): ?>
+        <h2>Modèles de <?= $fabricant ?></h2>
         <select name="modele" id="modele">
             <?php foreach ($modeles as $mod): ?>
-                <option value="<?= htmlspecialchars($mod['nom']) ?>"><?= htmlspecialchars($mod['nom']) ?></option>
+                <option value="<?= htmlspecialchars($mod['nom'], ENT_QUOTES, 'UTF-8') ?>">
+                    <?= htmlspecialchars($mod['nom'], ENT_QUOTES, 'UTF-8') ?>
+                </option>
             <?php endforeach; ?>
         </select>
         <br>
-        <label>Nouveau modèle :</label>
+
+        <label for="nouveau_modele">Nouveau modèle :</label>
         <input type="text" name="nouveau_modele" id="nouveau_modele">
         <button type="button" onclick="goToStep3()">Suivant</button>
     <?php endif; ?>
 
     <!-- Étape 3 : Détails -->
-    <?php if ($_GET['step'] == 3): ?>
-        <h2>Détails du modèle <?= htmlspecialchars($_GET['modele']) ?></h2>
-        <label>Pays :</label>
-        <input type="text" name="pays" value="<?= htmlspecialchars($PaysModele ?? '') ?>" required>
+    <?php if ($step === 3): ?>
+        <h2>Détails du modèle <?= $modele ?></h2>
 
-        <label>Année de début :</label>
-        <input type="number" name="debut" value="<?= htmlspecialchars($Annee_DebutModele ?? '') ?>" required>
+        <label for="pays">Pays :</label>
+        <input type="text" name="pays" id="pays"
+               value="<?= htmlspecialchars($PaysModele ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
 
-        <label>Année de fin :</label>
-        <input type="number" name="fin" value="<?= htmlspecialchars($Annee_FinModele ?? '') ?>" required>
+        <label for="debut">Année de début :</label>
+        <input type="number" name="debut" id="debut"
+               value="<?= htmlspecialchars($Annee_DebutModele ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
 
-        <label>Commentaire :</label>
-        <textarea name="commentaire"></textarea>
+        <label for="fin">Année de fin :</label>
+        <input type="number" name="fin" id="fin"
+               value="<?= htmlspecialchars($Annee_FinModele ?? '', ENT_QUOTES, 'UTF-8') ?>" required>
 
-        <label>Description :</label>
-        <textarea name="description"><?= htmlspecialchars($DescriptionModele ?? '') ?></textarea>
+        <label for="commentaire">Commentaire :</label>
+        <textarea name="commentaire" id="commentaire"></textarea>
+
+        <label for="description">Description :</label>
+        <textarea name="description" id="description">
+            <?= htmlspecialchars($DescriptionModele ?? '', ENT_QUOTES, 'UTF-8') ?>
+        </textarea>
 
         <button type="submit">Ajouter l'appareil</button>
     <?php endif; ?>
@@ -68,9 +87,9 @@
 <script>
     function goToStep2() {
         let fabricant = document.getElementById('fabricant').value;
-        let nouveauFabricant = document.getElementById('nouveau_fabricant').value;
+        let nouveauFabricant = document.getElementById('nouveau_fabricant').value.trim();
 
-        if (nouveauFabricant.trim() !== '') {
+        if (nouveauFabricant !== '') {
             fabricant = nouveauFabricant;
         }
 
@@ -81,10 +100,10 @@
 
     function goToStep3() {
         let modele = document.getElementById('modele').value;
-        let nouveauModele = document.getElementById('nouveau_modele').value;
+        let nouveauModele = document.getElementById('nouveau_modele').value.trim();
         let fabricant = new URLSearchParams(window.location.search).get('fabricant');
 
-        if (nouveauModele.trim() !== '') {
+        if (nouveauModele !== '') {
             modele = nouveauModele;
         }
 

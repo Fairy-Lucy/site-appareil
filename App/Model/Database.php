@@ -4,10 +4,19 @@ class Database {
 
     public static function getConnection() {
         if (self::$pdo === null) {
-            $host = 'localhost';
-            $dbname = 'appareil_photo';
-            $username = 'postgres';
-            $password = 'ural-4320';
+
+            $envPath = __DIR__ . '.env';
+
+            if (!file_exists($envPath)) {
+                die("Fichier .env introuvable à l'emplacement : $envPath");
+            }
+
+            $env = parse_ini_file($envPath);
+
+            $host = $env['DB_HOST'] ?? 'localhost';
+            $dbname = $env['DB_NAME'] ?? 'appareil_photo';
+            $username = $env['DB_USER'] ?? 'postgres';
+            $password = $env['DB_PASS'] ?? '';
 
             try {
                 self::$pdo = new PDO("pgsql:host=$host;dbname=$dbname", $username, $password);
@@ -16,6 +25,7 @@ class Database {
                 die('Erreur de connexion à la base de données : ' . $e->getMessage());
             }
         }
+
         return self::$pdo;
     }
 }
